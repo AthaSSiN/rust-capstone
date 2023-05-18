@@ -190,7 +190,7 @@ dependencies = [
  "cfg-if 1.0.0",
  "libc",
  "miniz_oxide 0.5.3",
- "object 0.29.0",
+ "object 0.29.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-demangle",
 ]
 
@@ -2364,6 +2364,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "object"
+version = "0.29.0"
+source = "git+https://github.com/lewis-revill/object-cheri.git?branch=ljr-cheri-0.29.0#484e16bea058eb20cfc368850dcd3e84130ba51d"
+dependencies = [
+ "crc32fast",
+ "hashbrown",
+ "indexmap",
+ "memchr",
+]
+
+[[package]]
 name = "odht"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3297,7 +3308,7 @@ dependencies = [
  "cstr",
  "libc",
  "measureme",
- "object 0.29.0",
+ "object 0.29.0 (git+https://github.com/lewis-revill/object-cheri.git?branch=ljr-cheri-0.29.0)",
  "rustc-demangle",
  "rustc_ast",
  "rustc_attr",
@@ -3331,7 +3342,7 @@ dependencies = [
  "itertools",
  "jobserver",
  "libc",
- "object 0.29.0",
+ "object 0.29.0 (git+https://github.com/lewis-revill/object-cheri.git?branch=ljr-cheri-0.29.0)",
  "pathdiff",
  "regex",
  "rustc_arena",
@@ -4919,7 +4930,7 @@ checksum = "e6cb0c7868d7f90407531108ab03263d9452a8811b7cdd87675343a40d4aa254"
 dependencies = [
  "gimli 0.26.1",
  "hashbrown",
- "object 0.29.0",
+ "object 0.29.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "tracing",
 ]
 

@@ -713,7 +713,7 @@ impl<'a, Ty> FnAbi<'a, Ty> {
                 }
             }
             "hexagon" => hexagon::compute_abi_info(self),
-            "riscv32" | "riscv64" => riscv::compute_abi_info(cx, self),
+            "riscv32" | "riscv64" | "rv64ixcheri_xcapstone" => riscv::compute_abi_info(cx, self),
             "wasm32" | "wasm64" => {
                 if cx.target_spec().adjust_abi(abi) == spec::abi::Abi::Wasm {
                     wasm::compute_wasm_abi_info(self)

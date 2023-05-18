@@ -1,0 +1,3373 @@
+Args: rustc -Cllvm-args="..." with -generate-arange-section -mergefunc-use-aliases -preserve-alignment-assumptions-during-inlining=false -import-cold-multiplier=0.1 -print-after-all -debug 
+'+zdinx' is not a recognized feature for this target (ignoring feature)
+'+zdinx' is not a recognized feature for this target (ignoring feature)
+'+zfinx' is not a recognized feature for this target (ignoring feature)
+'+zfinx' is not a recognized feature for this target (ignoring feature)
+'+zhinx' is not a recognized feature for this target (ignoring feature)
+'+zhinx' is not a recognized feature for this target (ignoring feature)
+'+zhinxmin' is not a recognized feature for this target (ignoring feature)
+'+zhinxmin' is not a recognized feature for this target (ignoring feature)
+'+zdinx' is not a recognized feature for this target (ignoring feature)
+'+zdinx' is not a recognized feature for this target (ignoring feature)
+'+zfinx' is not a recognized feature for this target (ignoring feature)
+'+zfinx' is not a recognized feature for this target (ignoring feature)
+'+zhinx' is not a recognized feature for this target (ignoring feature)
+'+zhinx' is not a recognized feature for this target (ignoring feature)
+'+zhinxmin' is not a recognized feature for this target (ignoring feature)
+'+zhinxmin' is not a recognized feature for this target (ignoring feature)
+warning: unused variable: `s`
+  --> main2.rs:43:8
+   |
+43 | fn foo(s: &S) {
+   |        ^ help: if this is intentional, prefix it with an underscore: `_s`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: field `c` is never read
+  --> main2.rs:40:5
+   |
+37 | struct S {
+   |        - field in this struct
+...
+40 |     c: &'static i32
+   |     ^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+*** IR Dump After AlwaysInlinerPass on [module] ***
+; ModuleID = 'main2.5983dcd6-cgu.0'
+source_filename = "main2.5983dcd6-cgu.0"
+target datalayout = "e-m:e-pf200:128:128:128:64-p:64:64-i64:64-i128:128-n64-S128-A200-P200-G200"
+target triple = "riscv64-unknown-none-elf"
+
+%0 = type { i32 addrspace(200)*, i32, i32, [2 x i32] }
+
+@_ZN5main21X17h0f3a926ec0b1b112E = internal addrspace(200) constant <{ [4 x i8] }> zeroinitializer, align 4
+
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+
+attributes #0 = { nounwind "target-cpu"="generic-rv64" "target-features"="+m,+a,+c,+xcheri,+cap-mode,+xcapstone" }
+attributes #1 = { nounwind }
+*** IR Dump After CoroEarlyPass on rust_eh_personality ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After CoroEarlyPass on _ZN5main23foo17hf197913805653d0aE ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After CoroEarlyPass on _start ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+Building CG for module: main2.5983dcd6-cgu.0
+  Adding 'rust_eh_personality' to entry set of the graph.
+    Added callable function: rust_eh_personality
+  Adding '_start' to entry set of the graph.
+    Added callable function: _start
+  Adding functions referenced by global initializers to the entry set.
+  Adding functions called by 'rust_eh_personality' to the graph.
+  Adding functions called by '_start' to the graph.
+    Added callable function: _ZN5main23foo17hf197913805653d0aE
+  Adding functions called by '_ZN5main23foo17hf197913805653d0aE' to the graph.
+Running an SCC pass across the RefSCC: [(rust_eh_personality)]
+*** IR Dump After CoroSplitPass on (rust_eh_personality) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+Running an SCC pass across the RefSCC: [(_ZN5main23foo17hf197913805653d0aE)]
+*** IR Dump After CoroSplitPass on (_ZN5main23foo17hf197913805653d0aE) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+Running an SCC pass across the RefSCC: [(_start)]
+*** IR Dump After CoroSplitPass on (_start) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+*** IR Dump After CoroCleanupPass on rust_eh_personality ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After CoroCleanupPass on _ZN5main23foo17hf197913805653d0aE ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After CoroCleanupPass on _start ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+*** IR Dump After AnnotationRemarksPass on rust_eh_personality ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After AnnotationRemarksPass on _ZN5main23foo17hf197913805653d0aE ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After AnnotationRemarksPass on _start ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+*** IR Dump After Pre-ISel Intrinsic Lowering (pre-isel-intrinsic-lowering) ***
+; ModuleID = 'main2.5983dcd6-cgu.0'
+source_filename = "main2.5983dcd6-cgu.0"
+target datalayout = "e-m:e-pf200:128:128:128:64-p:64:64-i64:64-i128:128-n64-S128-A200-P200-G200"
+target triple = "riscv64-unknown-none-elf"
+
+%0 = type { i32 addrspace(200)*, i32, i32, [2 x i32] }
+
+@_ZN5main21X17h0f3a926ec0b1b112E = internal addrspace(200) constant <{ [4 x i8] }> zeroinitializer, align 4
+
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+
+attributes #0 = { nounwind "target-cpu"="generic-rv64" "target-features"="+m,+a,+c,+xcheri,+cap-mode,+xcapstone" }
+attributes #1 = { nounwind }
+
+Features:+m,+a,+c,+xcheri,+cap-mode,+xcapstone
+CPU:generic-rv64
+TuneCPU:generic-rv64
+
+*** IR Dump After Expand Atomic instructions (atomic-expand) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After RISCV gather/scatter lowering (riscv-gather-scatter-lowering) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Expand Atomic instructions (atomic-expand) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After RISCV gather/scatter lowering (riscv-gather-scatter-lowering) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Expand Atomic instructions (atomic-expand) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+*** IR Dump After RISCV gather/scatter lowering (riscv-gather-scatter-lowering) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #1
+  br label %7
+
+7:                                                ; preds = %0
+  ret void
+}
+
+Checking function _start
+cheri-bound-allocas:  -Adding stack bounds since it is passed to call:   call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #2
+cheri-bound-allocas: Found alloca use that needs bounds:   call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %1) #2
+cheri-bound-allocas:  -Checking if getelementptr needs stack bounds:   %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+cheri-bound-allocas:   -Checking if load/store needs bounds (GEP offset is 20):   store i32 2, i32 addrspace(200)* %6, align 4
+cheri-bound-allocas:    -Load/store size=4, alloca size=32, current GEP offset=20 for i32
+cheri-bound-allocas:    -Load/store is in bounds -> can reuse $csp for   store i32 2, i32 addrspace(200)* %6, align 4
+cheri-bound-allocas:  -no getelementptr users need bounds:   %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+cheri-bound-allocas:  -Checking if getelementptr needs stack bounds:   %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+cheri-bound-allocas:   -Checking if load/store needs bounds (GEP offset is 16):   store i32 1, i32 addrspace(200)* %5, align 16
+cheri-bound-allocas:    -Load/store size=4, alloca size=32, current GEP offset=16 for i32
+cheri-bound-allocas:    -Load/store is in bounds -> can reuse $csp for   store i32 1, i32 addrspace(200)* %5, align 16
+cheri-bound-allocas:  -no getelementptr users need bounds:   %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+cheri-bound-allocas:  -Checking if bitcast needs stack bounds:   %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+cheri-bound-allocas:   -Checking if load/store needs bounds (GEP offset is 0):   store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+cheri-bound-allocas:    -Load/store size=16, alloca size=32, current GEP offset=0 for i32 addrspace(200)*
+cheri-bound-allocas:    -Load/store is in bounds -> can reuse $csp for   store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+cheri-bound-allocas:  -no bitcast users need bounds:   %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+cheri-bound-allocas:  -Checking if getelementptr needs stack bounds:   %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+cheri-bound-allocas:   -Checking if load/store needs bounds (GEP offset is 20):   store i32 0, i32 addrspace(200)* %3, align 4
+cheri-bound-allocas:    -Load/store size=4, alloca size=32, current GEP offset=20 for i32
+cheri-bound-allocas:    -Load/store is in bounds -> can reuse $csp for   store i32 0, i32 addrspace(200)* %3, align 4
+cheri-bound-allocas:  -no getelementptr users need bounds:   %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+cheri-bound-allocas:  -Checking if getelementptr needs stack bounds:   %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+cheri-bound-allocas:   -Checking if load/store needs bounds (GEP offset is 16):   store i32 0, i32 addrspace(200)* %2, align 16
+cheri-bound-allocas:    -Load/store size=4, alloca size=32, current GEP offset=16 for i32
+cheri-bound-allocas:    -Load/store is in bounds -> can reuse $csp for   store i32 0, i32 addrspace(200)* %2, align 16
+cheri-bound-allocas:  -no getelementptr users need bounds:   %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+cheri-bound-allocas: _start: 1 of 6 users need bounds for   %1 = alloca %0, align 16, addrspace(200)
+_start: setting bounds on stack alloca to 32  %1 = alloca %0, align 16, addrspace(200)
+*** IR Dump After CHERI bound stack allocations (cheri-bound-allocas) ***
+; ModuleID = 'main2.5983dcd6-cgu.0'
+source_filename = "main2.5983dcd6-cgu.0"
+target datalayout = "e-m:e-pf200:128:128:128:64-p:64:64-i64:64-i128:128-n64-S128-A200-P200-G200"
+target triple = "riscv64-unknown-none-elf"
+
+%0 = type { i32 addrspace(200)*, i32, i32, [2 x i32] }
+
+@_ZN5main21X17h0f3a926ec0b1b112E = internal addrspace(200) constant <{ [4 x i8] }> zeroinitializer, align 4
+
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+
+; Function Attrs: nounwind readnone willreturn
+declare i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)*, i64) addrspace(200) #1
+
+attributes #0 = { nounwind "target-cpu"="generic-rv64" "target-features"="+m,+a,+c,+xcheri,+cap-mode,+xcapstone" }
+attributes #1 = { nounwind readnone willreturn }
+attributes #2 = { nounwind }
+*** IR Dump After Module Verifier (verify) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Lower Garbage Collection Instructions (gc-lowering) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Shadow Stack GC Lowering (shadow-stack-gc-lowering) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Lower constant intrinsics (lower-constant-intrinsics) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Remove unreachable blocks from the CFG (unreachableblockelim) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Expand vector predication intrinsics (expandvp) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Scalarize Masked Memory Intrinsics (scalarize-masked-mem-intrin) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Expand reduction intrinsics (expand-reductions) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Exception handling preparation (dwarfehprepare) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+[SafeStack] Function: rust_eh_personality
+[SafeStack]     safestack is not requested for this function
+*** IR Dump After Safe Stack instrumentation pass (safe-stack) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Module Verifier (verify) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+		Looking for trivial roots
+Found a new trivial root: %0
+Last visited node: %0
+		Looking for non-trivial roots
+Total: 1, Num: 2
+Discovered CFG nodes:
+0: nullptr
+1: nullptr
+2: %0
+Found roots: %0 
+---- Branch Probability Info : rust_eh_personality ----
+
+Computing probabilities for 
+
+
+
+=== rust_eh_personality
+Enabling fast-isel
+Creating new node: t1: ch = RISCVISD::RET_FLAG t0
+Initial selection DAG: %bb.0 'rust_eh_personality:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+
+Combining: t1: ch = RISCVISD::RET_FLAG t0
+
+Combining: t0: ch = EntryToken
+Optimized lowered selection DAG: %bb.0 'rust_eh_personality:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+Legalizing node: t0: ch = EntryToken
+Analyzing result type: ch
+Legal result type
+Legally typed node: t0: ch = EntryToken
+
+Legalizing node: t1: ch = RISCVISD::RET_FLAG t0
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t0: ch = EntryToken
+Legal operand
+Legally typed node: t1: ch = RISCVISD::RET_FLAG t0
+
+Legalizing node: t65535: ch = handlenode t1
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t1: ch = RISCVISD::RET_FLAG t0
+Legal operand
+Legally typed node: t65535: ch = handlenode t1
+
+Type-legalized selection DAG: %bb.0 'rust_eh_personality:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+
+Legalizing: t1: ch = RISCVISD::RET_FLAG t0
+Legal node: nothing to do
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+Legalized selection DAG: %bb.0 'rust_eh_personality:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+
+Legalizing: t1: ch = RISCVISD::RET_FLAG t0
+Legal node: nothing to do
+
+Combining: t1: ch = RISCVISD::RET_FLAG t0
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+
+Combining: t0: ch = EntryToken
+Optimized legalized selection DAG: %bb.0 'rust_eh_personality:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+===== Instruction selection begins: %bb.0 ''
+
+ISEL: Starting selection on root node: t1: ch = RISCVISD::RET_FLAG t0
+ISEL: Starting pattern match
+  Skipped scope entry (due to false predicate) at index 1020091, continuing at 1020099
+  Morphed node: t1: ch = PseudoCRET t0
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t0: ch = EntryToken
+
+===== Instruction selection ends:
+Selected selection DAG: %bb.0 'rust_eh_personality:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = PseudoCRET t0
+
+
+********** List Scheduling %bb.0 '' **********
+SU(0): t1: ch = PseudoCRET t0
+
+  # preds left       : 0
+  # succs left       : 0
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 0
+  Height             : 0
+
+Examining Available:
+Height 0: SU(0): t1: ch = PseudoCRET t0
+
+
+*** Scheduling [0]: SU(0): t1: ch = PseudoCRET t0
+
+*** Final schedule ***
+SU(0): t1: ch = PseudoCRET t0
+
+
+Total amount of phi nodes to update: 0
+*** MachineFunction at end of ISel ***
+# Machine code for function rust_eh_personality: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After RISCV DAG->DAG Pattern Instruction Selection (<no PI>) ***:
+# Machine code for function rust_eh_personality: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Finalize ISel and expand pseudo-instructions (finalize-isel) ***:
+# Machine code for function rust_eh_personality: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Local Stack Slot Allocation (localstackalloc) ***:
+# Machine code for function rust_eh_personality: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After RISCV Insert VSETVLI pass (riscv-insert-vsetvli) ***:
+# Machine code for function rust_eh_personality: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Eliminate PHI nodes for register allocation (phi-node-elimination) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+********** REWRITING TWO-ADDR INSTRS **********
+********** Function: rust_eh_personality
+# *** IR Dump After Two-Address instruction pass (twoaddressinstruction) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+********** FAST REGISTER ALLOCATION **********
+********** Function: rust_eh_personality
+
+Allocating bb.0 (%ir-block.0):
+  PseudoCRET
+
+>> PseudoCRET
+Regs:
+<< PseudoCRET
+Begin Regs:
+Loading live registers at begin of block.
+bb.0 (%ir-block.0):
+  PseudoCRET
+# *** IR Dump After Fast Register Allocator (regallocfast) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Remove Redundant DEBUG_VALUE analysis (removeredundantdebugvalues) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Fixup Statepoint Caller Saved (fixup-statepoint-caller-saved) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Prologue/Epilogue Insertion & Frame Finalization (prologepilog) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+Machine Function
+********** EXPANDING POST-RA PSEUDO INSTRS **********
+********** Function: rust_eh_personality
+# *** IR Dump After Post-RA pseudo instruction expansion pass (postrapseudos) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Analyze Machine Code For Garbage Collection (gc-analysis) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Insert fentry calls (fentry-insert) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Insert XRay ops (xray-instrumentation) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Implement the 'patchable-function' attribute (patchable-function) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+***** BranchRelaxation *****
+  Basic blocks before relaxation
+%bb.0	offset=00000000	size=0x4
+  Basic blocks after relaxation
+
+%bb.0	offset=00000000	size=0x4
+# *** IR Dump After Branch relaxation pass (branch-relaxation) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After Contiguously Lay Out Funclets (funclet-layout) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+********** COMPUTING STACKMAP LIVENESS: rust_eh_personality **********
+# *** IR Dump After StackMap Liveness Analysis (stackmap-liveness) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+
+Debug Range Extension
+# *** IR Dump After Live DEBUG_VALUE analysis (livedebugvalues) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After RISCV pseudo instruction expansion pass (riscv-expand-pseudo) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After RISCV atomic pseudo instruction expansion pass (riscv-expand-atomic-pseudo) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+# *** IR Dump After RISCV Assembly Printer (<no PI>) ***:
+# Machine code for function rust_eh_personality: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.0):
+  PseudoCRET
+
+# End machine code for function rust_eh_personality.
+
+*** IR Dump After Free MachineFunction (<no PI>) ***
+; Function Attrs: nounwind
+define hidden void @rust_eh_personality() unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Module Verifier (verify) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Lower Garbage Collection Instructions (gc-lowering) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Shadow Stack GC Lowering (shadow-stack-gc-lowering) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Lower constant intrinsics (lower-constant-intrinsics) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Remove unreachable blocks from the CFG (unreachableblockelim) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Expand vector predication intrinsics (expandvp) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Scalarize Masked Memory Intrinsics (scalarize-masked-mem-intrin) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Expand reduction intrinsics (expand-reductions) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Exception handling preparation (dwarfehprepare) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+[SafeStack] Function: _ZN5main23foo17hf197913805653d0aE
+[SafeStack]     safestack is not requested for this function
+*** IR Dump After Safe Stack instrumentation pass (safe-stack) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Module Verifier (verify) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+		Looking for trivial roots
+Found a new trivial root: %1
+Last visited node: %1
+		Looking for non-trivial roots
+Total: 1, Num: 2
+Discovered CFG nodes:
+0: nullptr
+1: nullptr
+2: %1
+Found roots: %1 
+---- Branch Probability Info : _ZN5main23foo17hf197913805653d0aE ----
+
+Computing probabilities for 
+
+
+
+=== _ZN5main23foo17hf197913805653d0aE
+Enabling fast-isel
+Creating new node: t2: iFATPTR128,ch = CopyFromReg t0, Register:iFATPTR128 %0
+Creating new node: t3: ch = RISCVISD::RET_FLAG t0
+Initial selection DAG: %bb.0 '_ZN5main23foo17hf197913805653d0aE:'
+SelectionDAG has 4 nodes:
+  t0: ch = EntryToken
+  t2: iFATPTR128,ch = CopyFromReg t0, Register:iFATPTR128 %0
+  t3: ch = RISCVISD::RET_FLAG t0
+
+
+
+Combining: t3: ch = RISCVISD::RET_FLAG t0
+
+Combining: t0: ch = EntryToken
+Optimized lowered selection DAG: %bb.0 '_ZN5main23foo17hf197913805653d0aE:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t3: ch = RISCVISD::RET_FLAG t0
+
+
+Legalizing node: t0: ch = EntryToken
+Analyzing result type: ch
+Legal result type
+Legally typed node: t0: ch = EntryToken
+
+Legalizing node: t3: ch = RISCVISD::RET_FLAG t0
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t0: ch = EntryToken
+Legal operand
+Legally typed node: t3: ch = RISCVISD::RET_FLAG t0
+
+Legalizing node: t65535: ch = handlenode t3
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t3: ch = RISCVISD::RET_FLAG t0
+Legal operand
+Legally typed node: t65535: ch = handlenode t3
+
+Type-legalized selection DAG: %bb.0 '_ZN5main23foo17hf197913805653d0aE:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t3: ch = RISCVISD::RET_FLAG t0
+
+
+
+Legalizing: t3: ch = RISCVISD::RET_FLAG t0
+Legal node: nothing to do
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+Legalized selection DAG: %bb.0 '_ZN5main23foo17hf197913805653d0aE:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t3: ch = RISCVISD::RET_FLAG t0
+
+
+
+Legalizing: t3: ch = RISCVISD::RET_FLAG t0
+Legal node: nothing to do
+
+Combining: t3: ch = RISCVISD::RET_FLAG t0
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+
+Combining: t0: ch = EntryToken
+Optimized legalized selection DAG: %bb.0 '_ZN5main23foo17hf197913805653d0aE:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t3: ch = RISCVISD::RET_FLAG t0
+
+
+===== Instruction selection begins: %bb.0 ''
+
+ISEL: Starting selection on root node: t3: ch = RISCVISD::RET_FLAG t0
+ISEL: Starting pattern match
+  Initial Opcode index to 1020087
+  Skipped scope entry (due to false predicate) at index 1020091, continuing at 1020099
+  Morphed node: t3: ch = PseudoCRET t0
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t0: ch = EntryToken
+
+===== Instruction selection ends:
+Selected selection DAG: %bb.0 '_ZN5main23foo17hf197913805653d0aE:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t3: ch = PseudoCRET t0
+
+
+********** List Scheduling %bb.0 '' **********
+SU(0): t3: ch = PseudoCRET t0
+
+  # preds left       : 0
+  # succs left       : 0
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 0
+  Height             : 0
+
+Examining Available:
+Height 0: SU(0): t3: ch = PseudoCRET t0
+
+
+*** Scheduling [0]: SU(0): t3: ch = PseudoCRET t0
+
+*** Final schedule ***
+SU(0): t3: ch = PseudoCRET t0
+
+
+Total amount of phi nodes to update: 0
+*** MachineFunction at end of ISel ***
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After RISCV DAG->DAG Pattern Instruction Selection (<no PI>) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Finalize ISel and expand pseudo-instructions (finalize-isel) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Local Stack Slot Allocation (localstackalloc) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After RISCV Insert VSETVLI pass (riscv-insert-vsetvli) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: IsSSA, TracksLiveness
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Eliminate PHI nodes for register allocation (phi-node-elimination) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+********** REWRITING TWO-ADDR INSTRS **********
+********** Function: _ZN5main23foo17hf197913805653d0aE
+# *** IR Dump After Two-Address instruction pass (twoaddressinstruction) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+********** FAST REGISTER ALLOCATION **********
+********** Function: _ZN5main23foo17hf197913805653d0aE
+
+Allocating bb.0 (%ir-block.1):
+  PseudoCRET
+
+>> PseudoCRET
+Regs:
+<< PseudoCRET
+Begin Regs:
+Loading live registers at begin of block.
+bb.0 (%ir-block.1):
+  PseudoCRET
+# *** IR Dump After Fast Register Allocator (regallocfast) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Remove Redundant DEBUG_VALUE analysis (removeredundantdebugvalues) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Fixup Statepoint Caller Saved (fixup-statepoint-caller-saved) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Prologue/Epilogue Insertion & Frame Finalization (prologepilog) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+Machine Function
+********** EXPANDING POST-RA PSEUDO INSTRS **********
+********** Function: _ZN5main23foo17hf197913805653d0aE
+# *** IR Dump After Post-RA pseudo instruction expansion pass (postrapseudos) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Analyze Machine Code For Garbage Collection (gc-analysis) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Insert fentry calls (fentry-insert) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Insert XRay ops (xray-instrumentation) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Implement the 'patchable-function' attribute (patchable-function) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+***** BranchRelaxation *****
+  Basic blocks before relaxation
+%bb.0	offset=00000000	size=0x4
+  Basic blocks after relaxation
+
+%bb.0	offset=00000000	size=0x4
+# *** IR Dump After Branch relaxation pass (branch-relaxation) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After Contiguously Lay Out Funclets (funclet-layout) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+********** COMPUTING STACKMAP LIVENESS: _ZN5main23foo17hf197913805653d0aE **********
+# *** IR Dump After StackMap Liveness Analysis (stackmap-liveness) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+
+Debug Range Extension
+# *** IR Dump After Live DEBUG_VALUE analysis (livedebugvalues) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After RISCV pseudo instruction expansion pass (riscv-expand-pseudo) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After RISCV atomic pseudo instruction expansion pass (riscv-expand-atomic-pseudo) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+# *** IR Dump After RISCV Assembly Printer (<no PI>) ***:
+# Machine code for function _ZN5main23foo17hf197913805653d0aE: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+
+bb.0 (%ir-block.1):
+  PseudoCRET
+
+# End machine code for function _ZN5main23foo17hf197913805653d0aE.
+
+*** IR Dump After Free MachineFunction (<no PI>) ***
+; Function Attrs: nounwind
+define internal void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %0) unnamed_addr addrspace(200) #0 {
+  ret void
+}
+*** IR Dump After Module Verifier (verify) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Lower Garbage Collection Instructions (gc-lowering) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Shadow Stack GC Lowering (shadow-stack-gc-lowering) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Lower constant intrinsics (lower-constant-intrinsics) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Remove unreachable blocks from the CFG (unreachableblockelim) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Expand vector predication intrinsics (expandvp) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Scalarize Masked Memory Intrinsics (scalarize-masked-mem-intrin) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Expand reduction intrinsics (expand-reductions) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Exception handling preparation (dwarfehprepare) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+[SafeStack] Function: _start
+[SafeStack]     safestack is not requested for this function
+*** IR Dump After Safe Stack instrumentation pass (safe-stack) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+*** IR Dump After Module Verifier (verify) ***
+; Function Attrs: nounwind
+define dso_local void @_start() unnamed_addr addrspace(200) #0 {
+  %1 = alloca %0, align 16, addrspace(200)
+  %2 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 0, i32 addrspace(200)* %2, align 16
+  %3 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 0, i32 addrspace(200)* %3, align 4
+  %4 = bitcast %0 addrspace(200)* %1 to i32 addrspace(200)* addrspace(200)*
+  store i32 addrspace(200)* bitcast (<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E to i32 addrspace(200)*), i32 addrspace(200)* addrspace(200)* %4, align 16
+  %5 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 1
+  store i32 1, i32 addrspace(200)* %5, align 16
+  %6 = getelementptr inbounds %0, %0 addrspace(200)* %1, i32 0, i32 2
+  store i32 2, i32 addrspace(200)* %6, align 4
+  %7 = bitcast %0 addrspace(200)* %1 to i8 addrspace(200)*
+  %8 = call i8 addrspace(200)* @llvm.cheri.bounded.stack.cap.i64(i8 addrspace(200)* %7, i64 32)
+  %9 = bitcast i8 addrspace(200)* %8 to %0 addrspace(200)*
+  call void @_ZN5main23foo17hf197913805653d0aE(%0 addrspace(200)* align 16 %9) #2
+  br label %10
+
+10:                                               ; preds = %0
+  ret void
+}
+		Looking for trivial roots
+Found a new trivial root: %10
+Last visited node: %0
+		Looking for non-trivial roots
+Total: 2, Num: 3
+Discovered CFG nodes:
+0: nullptr
+1: nullptr
+2: %10
+3: %0
+Found roots: %10 
+---- Branch Probability Info : _start ----
+
+Computing probabilities for 
+Computing probabilities for 
+
+
+
+=== _start
+Enabling fast-isel
+Creating constant: t2: i64 = Constant<0>
+Creating constant: t3: i64 = Constant<16>
+Creating new node: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+Creating constant: t5: i32 = Constant<0>
+Creating new node: t6: iFATPTR128 = undef
+Creating new node: t7: ch = store<(store (s32) into %ir.2, align 16, addrspace 200)> t0, Constant:i32<0>, t4, undef:iFATPTR128
+Creating constant: t8: i64 = Constant<20>
+Creating new node: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+Creating new node: t10: ch = store<(store (s32) into %ir.3, addrspace 200)> t7, Constant:i32<0>, t9, undef:iFATPTR128
+Creating new node: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t10, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+Creating constant: t13: i32 = Constant<1>
+Creating new node: t14: ch = store<(store (s32) into %ir.5, align 16, addrspace 200)> t12, Constant:i32<1>, t4, undef:iFATPTR128
+Creating constant: t15: i32 = Constant<2>
+Creating new node: t16: ch = store<(store (s32) into %ir.6, addrspace 200)> t14, Constant:i32<2>, t9, undef:iFATPTR128
+Creating constant: t17: i64 = TargetConstant<15>
+Creating constant: t18: i64 = Constant<32>
+Creating new node: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+Creating constant: t21: i64 = TargetConstant<0>
+Creating new node: t22: ch,glue = callseq_start t16, TargetConstant:i64<0>, TargetConstant:i64<0>
+Creating new node: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+Creating new node: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+Creating new node: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+Creating new node: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+Initial selection DAG: %bb.0 '_start:'
+SelectionDAG has 31 nodes:
+  t2: i64 = Constant<0>
+  t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+  t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+  t20: iFATPTR128 = GlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0
+                t0: ch = EntryToken
+              t7: ch = store<(store (s32) into %ir.2, align 16, addrspace 200)> t0, Constant:i32<0>, t4, undef:iFATPTR128
+            t10: ch = store<(store (s32) into %ir.3, addrspace 200)> t7, Constant:i32<0>, t9, undef:iFATPTR128
+          t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t10, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+        t14: ch = store<(store (s32) into %ir.5, align 16, addrspace 200)> t12, Constant:i32<1>, t4, undef:iFATPTR128
+      t16: ch = store<(store (s32) into %ir.6, addrspace 200)> t14, Constant:i32<2>, t9, undef:iFATPTR128
+    t22: ch,glue = callseq_start t16, TargetConstant:i64<0>, TargetConstant:i64<0>
+    t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+  t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+  t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+    t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+  t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+
+
+Combining: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+Combining: t29: ch = BasicBlock< 0x7f716405f128>
+
+Combining: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+
+Combining: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+
+Combining: t26: Untyped = RegisterMask
+
+Combining: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+
+Combining: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+Combining: t23: iFATPTR128 = Register $c10
+
+Combining: t22: ch,glue = callseq_start t16, TargetConstant:i64<0>, TargetConstant:i64<0>
+
+Combining: t21: i64 = TargetConstant<0>
+
+Combining: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+
+Combining: t18: i64 = Constant<32>
+
+Combining: t17: i64 = TargetConstant<15>
+
+Combining: t16: ch = store<(store (s32) into %ir.6, addrspace 200)> t14, Constant:i32<2>, t9, undef:iFATPTR128
+
+Combining: t15: i32 = Constant<2>
+
+Combining: t14: ch = store<(store (s32) into %ir.5, align 16, addrspace 200)> t12, Constant:i32<1>, t4, undef:iFATPTR128
+
+Combining: t13: i32 = Constant<1>
+
+Combining: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t10, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+
+Combining: t11: iFATPTR128 = GlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+Combining: t10: ch = store<(store (s32) into %ir.3, addrspace 200)> t7, Constant:i32<0>, t9, undef:iFATPTR128
+
+Combining: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+
+Combining: t8: i64 = Constant<20>
+
+Combining: t7: ch = store<(store (s32) into %ir.2, align 16, addrspace 200)> t0, Constant:i32<0>, t4, undef:iFATPTR128
+
+Combining: t6: iFATPTR128 = undef
+
+Combining: t5: i32 = Constant<0>
+
+Combining: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+
+Combining: t3: i64 = Constant<16>
+
+Combining: t1: iFATPTR128 = FrameIndex<0>
+
+Combining: t0: ch = EntryToken
+Optimized lowered selection DAG: %bb.0 '_start:'
+SelectionDAG has 29 nodes:
+  t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+  t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+                t0: ch = EntryToken
+              t7: ch = store<(store (s32) into %ir.2, align 16, addrspace 200)> t0, Constant:i32<0>, t4, undef:iFATPTR128
+            t10: ch = store<(store (s32) into %ir.3, addrspace 200)> t7, Constant:i32<0>, t9, undef:iFATPTR128
+          t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t10, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+        t14: ch = store<(store (s32) into %ir.5, align 16, addrspace 200)> t12, Constant:i32<1>, t4, undef:iFATPTR128
+      t16: ch = store<(store (s32) into %ir.6, addrspace 200)> t14, Constant:i32<2>, t9, undef:iFATPTR128
+    t22: ch,glue = callseq_start t16, TargetConstant:i64<0>, TargetConstant:i64<0>
+    t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+  t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+  t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+    t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+  t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+
+Legalizing node: t29: ch = BasicBlock< 0x7f716405f128>
+Analyzing result type: ch
+Legal result type
+Legally typed node: t29: ch = BasicBlock< 0x7f716405f128>
+
+Legalizing node: t26: Untyped = RegisterMask
+Analyzing result type: Untyped
+Legal result type
+Legally typed node: t26: Untyped = RegisterMask
+
+Legalizing node: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+Analyzing result type: iFATPTR128
+Legal result type
+Legally typed node: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+
+Legalizing node: t23: iFATPTR128 = Register $c10
+Ignoring node results
+Legally typed node: t23: iFATPTR128 = Register $c10
+
+Legalizing node: t21: i64 = TargetConstant<0>
+Ignoring node results
+Legally typed node: t21: i64 = TargetConstant<0>
+
+Legalizing node: t18: i64 = Constant<32>
+Analyzing result type: i64
+Legal result type
+Legally typed node: t18: i64 = Constant<32>
+
+Legalizing node: t17: i64 = TargetConstant<15>
+Ignoring node results
+Legally typed node: t17: i64 = TargetConstant<15>
+
+Legalizing node: t15: i32 = Constant<2>
+Analyzing result type: i32
+Promote integer result: t15: i32 = Constant<2>
+
+Creating constant: t31: i64 = Constant<2>
+Legalizing node: t31: i64 = Constant<2>
+Analyzing result type: i64
+Legal result type
+Legally typed node: t31: i64 = Constant<2>
+
+Legalizing node: t13: i32 = Constant<1>
+Analyzing result type: i32
+Promote integer result: t13: i32 = Constant<1>
+
+Creating constant: t32: i64 = Constant<1>
+Legalizing node: t32: i64 = Constant<1>
+Analyzing result type: i64
+Legal result type
+Legally typed node: t32: i64 = Constant<1>
+
+Legalizing node: t11: iFATPTR128 = GlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Analyzing result type: iFATPTR128
+Legal result type
+Legally typed node: t11: iFATPTR128 = GlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+Legalizing node: t8: i64 = Constant<20>
+Analyzing result type: i64
+Legal result type
+Legally typed node: t8: i64 = Constant<20>
+
+Legalizing node: t6: iFATPTR128 = undef
+Analyzing result type: iFATPTR128
+Legal result type
+Legally typed node: t6: iFATPTR128 = undef
+
+Legalizing node: t5: i32 = Constant<0>
+Analyzing result type: i32
+Promote integer result: t5: i32 = Constant<0>
+
+Creating constant: t33: i64 = Constant<0>
+Legalizing node: t33: i64 = Constant<0>
+Analyzing result type: i64
+Legal result type
+Legally typed node: t33: i64 = Constant<0>
+
+Legalizing node: t3: i64 = Constant<16>
+Analyzing result type: i64
+Legal result type
+Legally typed node: t3: i64 = Constant<16>
+
+Legalizing node: t1: iFATPTR128 = FrameIndex<0>
+Analyzing result type: iFATPTR128
+Legal result type
+Legally typed node: t1: iFATPTR128 = FrameIndex<0>
+
+Legalizing node: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+Analyzing result type: iFATPTR128
+Legal result type
+Analyzing operand: t1: iFATPTR128 = FrameIndex<0>
+Legal operand
+Analyzing operand: t3: i64 = Constant<16>
+Legal operand
+Legally typed node: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+
+Legalizing node: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+Analyzing result type: iFATPTR128
+Legal result type
+Analyzing operand: t1: iFATPTR128 = FrameIndex<0>
+Legal operand
+Analyzing operand: t8: i64 = Constant<20>
+Legal operand
+Legally typed node: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+
+Legalizing node: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+Analyzing result type: iFATPTR128
+Legal result type
+Analyzing operand: t1: iFATPTR128 = FrameIndex<0>
+Legal operand
+Analyzing operand: t18: i64 = Constant<32>
+Legal operand
+Legally typed node: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+
+Legalizing node: t0: ch = EntryToken
+Analyzing result type: ch
+Legal result type
+Legally typed node: t0: ch = EntryToken
+
+Legalizing node: t7: ch = store<(store (s32) into %ir.2, align 16, addrspace 200)> t0, Constant:i32<0>, t4, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t0: ch = EntryToken
+Legal operand
+Analyzing operand: t5: i32 = Constant<0>
+Promote integer operand: t7: ch = store<(store (s32) into %ir.2, align 16, addrspace 200)> t0, Constant:i32<0>, t4, undef:iFATPTR128
+
+Creating new node: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+Replacing: t7: ch = store<(store (s32) into %ir.2, align 16, addrspace 200)> t0, Constant:i32<0>, t4, undef:iFATPTR128
+     with: t34: ch = store<(store (s32) into %ir.<badref>, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+Legalizing node: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t0: ch = EntryToken
+Legal operand
+Analyzing operand: t33: i64 = Constant<0>
+Legal operand
+Analyzing operand: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+Legal operand
+Analyzing operand: t6: iFATPTR128 = undef
+Legal operand
+Legally typed node: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+
+Legalizing node: t10: ch = store<(store (s32) into %ir.3, addrspace 200)> t34, Constant:i32<0>, t9, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+Legal operand
+Analyzing operand: t5: i32 = Constant<0>
+Promote integer operand: t10: ch = store<(store (s32) into %ir.3, addrspace 200)> t34, Constant:i32<0>, t9, undef:iFATPTR128
+
+Creating new node: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+Replacing: t10: ch = store<(store (s32) into %ir.3, addrspace 200)> t34, Constant:i32<0>, t9, undef:iFATPTR128
+     with: t35: ch = store<(store (s32) into %ir.<badref>, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+Legalizing node: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+Legal operand
+Analyzing operand: t33: i64 = Constant<0>
+Legal operand
+Analyzing operand: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+Legal operand
+Analyzing operand: t6: iFATPTR128 = undef
+Legal operand
+Legally typed node: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+
+Legalizing node: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+Legal operand
+Analyzing operand: t11: iFATPTR128 = GlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Legal operand
+Analyzing operand: t1: iFATPTR128 = FrameIndex<0>
+Legal operand
+Analyzing operand: t6: iFATPTR128 = undef
+Legal operand
+Legally typed node: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+
+Legalizing node: t14: ch = store<(store (s32) into %ir.5, align 16, addrspace 200)> t12, Constant:i32<1>, t4, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+Legal operand
+Analyzing operand: t13: i32 = Constant<1>
+Promote integer operand: t14: ch = store<(store (s32) into %ir.5, align 16, addrspace 200)> t12, Constant:i32<1>, t4, undef:iFATPTR128
+
+Creating new node: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+Replacing: t14: ch = store<(store (s32) into %ir.5, align 16, addrspace 200)> t12, Constant:i32<1>, t4, undef:iFATPTR128
+     with: t36: ch = store<(store (s32) into %ir.<badref>, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+Legalizing node: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+Legal operand
+Analyzing operand: t32: i64 = Constant<1>
+Legal operand
+Analyzing operand: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+Legal operand
+Analyzing operand: t6: iFATPTR128 = undef
+Legal operand
+Legally typed node: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+
+Legalizing node: t16: ch = store<(store (s32) into %ir.6, addrspace 200)> t36, Constant:i32<2>, t9, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+Legal operand
+Analyzing operand: t15: i32 = Constant<2>
+Promote integer operand: t16: ch = store<(store (s32) into %ir.6, addrspace 200)> t36, Constant:i32<2>, t9, undef:iFATPTR128
+
+Creating new node: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+Replacing: t16: ch = store<(store (s32) into %ir.6, addrspace 200)> t36, Constant:i32<2>, t9, undef:iFATPTR128
+     with: t37: ch = store<(store (s32) into %ir.<badref>, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+Legalizing node: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+Legal operand
+Analyzing operand: t31: i64 = Constant<2>
+Legal operand
+Analyzing operand: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+Legal operand
+Analyzing operand: t6: iFATPTR128 = undef
+Legal operand
+Legally typed node: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+
+Legalizing node: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+Analyzing result type: ch
+Legal result type
+Analyzing result type: glue
+Legal result type
+Analyzing operand: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+Legal operand
+Legally typed node: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+
+Legalizing node: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+Analyzing result type: ch
+Legal result type
+Analyzing result type: glue
+Legal result type
+Analyzing operand: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+Legal operand
+Analyzing operand: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+Legal operand
+Legally typed node: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+Legalizing node: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+Analyzing result type: ch
+Legal result type
+Analyzing result type: glue
+Legal result type
+Analyzing operand: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+Legal operand
+Analyzing operand: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+Legal operand
+Analyzing operand: t26: Untyped = RegisterMask
+Legal operand
+Analyzing operand: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+Legal operand
+Legally typed node: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+
+Legalizing node: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+Analyzing result type: ch
+Legal result type
+Analyzing result type: glue
+Legal result type
+Analyzing operand: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+Legal operand
+Analyzing operand: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+Legal operand
+Legally typed node: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+
+Legalizing node: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+Legal operand
+Analyzing operand: t29: ch = BasicBlock< 0x7f716405f128>
+Legal operand
+Legally typed node: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+Legalizing node: t65535: ch = handlenode t30
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+Legal operand
+Legally typed node: t65535: ch = handlenode t30
+
+Type-legalized selection DAG: %bb.0 '_start:'
+SelectionDAG has 29 nodes:
+  t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+  t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+                t0: ch = EntryToken
+              t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+            t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+          t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+        t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+      t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+    t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+    t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+  t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+  t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+    t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+  t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+
+
+Combining: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+
+Combining: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+
+Combining: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+
+Combining: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+
+Combining: t33: i64 = Constant<0>
+
+Combining: t32: i64 = Constant<1>
+
+Combining: t31: i64 = Constant<2>
+
+Combining: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+Combining: t29: ch = BasicBlock< 0x7f716405f128>
+
+Combining: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+
+Combining: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+
+Combining: t26: Untyped = RegisterMask
+
+Combining: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+
+Combining: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+Combining: t23: iFATPTR128 = Register $c10
+
+Combining: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+
+Combining: t21: i64 = TargetConstant<0>
+
+Combining: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+
+Combining: t18: i64 = Constant<32>
+
+Combining: t17: i64 = TargetConstant<15>
+
+Combining: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+
+Combining: t11: iFATPTR128 = GlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+Combining: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+
+Combining: t8: i64 = Constant<20>
+
+Combining: t6: iFATPTR128 = undef
+
+Combining: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+
+Combining: t3: i64 = Constant<16>
+
+Combining: t1: iFATPTR128 = FrameIndex<0>
+
+Combining: t0: ch = EntryToken
+Optimized type-legalized selection DAG: %bb.0 '_start:'
+SelectionDAG has 29 nodes:
+  t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+  t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+                t0: ch = EntryToken
+              t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+            t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+          t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+        t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+      t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+    t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+    t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+  t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+  t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+    t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+  t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+
+
+Legalizing: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+Legal node: nothing to do
+
+Legalizing: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+
+Legalizing: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+Legal node: nothing to do
+
+Legalizing: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+Legal node: nothing to do
+
+Legalizing: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+
+Legalizing: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+Legalizing truncating store operations
+
+Legalizing: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+Legalizing truncating store operations
+
+Legalizing: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, GlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+Legalizing store operation
+Optimizing float store operations
+Legal store
+
+Legalizing: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+Legalizing truncating store operations
+
+Legalizing: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+Legalizing truncating store operations
+
+Legalizing: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+Trying custom legalization
+Could not custom legalize node
+Trying to expand node
+
+Legalizing: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+Legal node: nothing to do
+
+Legalizing: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+Legal node: nothing to do
+
+Legalizing: t33: i64 = Constant<0>
+Legal node: nothing to do
+
+Legalizing: t32: i64 = Constant<1>
+Legal node: nothing to do
+
+Legalizing: t31: i64 = Constant<2>
+Legal node: nothing to do
+
+Legalizing: t29: ch = BasicBlock< 0x7f716405f128>
+Legal node: nothing to do
+
+Legalizing: t26: Untyped = RegisterMask
+Legal node: nothing to do
+
+Legalizing: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+Legal node: nothing to do
+
+Legalizing: t23: iFATPTR128 = Register $c10
+
+Legalizing: t21: i64 = TargetConstant<0>
+
+Legalizing: t18: i64 = Constant<32>
+Legal node: nothing to do
+
+Legalizing: t17: i64 = TargetConstant<15>
+
+Legalizing: t11: iFATPTR128 = GlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Trying custom legalization
+Creating new machine node: t39: iFATPTR128 = PseudoCLGC TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Successfully custom legalized node
+ ... replacing: t11: iFATPTR128 = GlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+     with:      t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+Legalizing: t8: i64 = Constant<20>
+Legal node: nothing to do
+
+Legalizing: t6: iFATPTR128 = undef
+Legal node: nothing to do
+
+Legalizing: t3: i64 = Constant<16>
+Legal node: nothing to do
+
+Legalizing: t1: iFATPTR128 = FrameIndex<0>
+Legal node: nothing to do
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+
+Legalizing: t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Legal node: nothing to do
+
+Legalizing: t38: iFATPTR128 = TargetGlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Legal node: nothing to do
+Legalized selection DAG: %bb.0 '_start:'
+SelectionDAG has 30 nodes:
+  t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+  t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+                t0: ch = EntryToken
+              t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+            t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+            t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+          t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, t39, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+        t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+      t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+    t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+    t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+  t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+  t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+    t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+  t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+
+
+Legalizing: t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Legal node: nothing to do
+
+Combining: t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+Legalizing: t38: iFATPTR128 = TargetGlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+Legal node: nothing to do
+
+Combining: t38: iFATPTR128 = TargetGlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+Legalizing: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+Legal node: nothing to do
+
+Combining: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+Legalizing: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+
+Combining: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+
+Legalizing: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+Legal node: nothing to do
+
+Combining: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+
+Legalizing: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+Legal node: nothing to do
+
+Combining: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+Legalizing: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+
+Combining: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+
+Legalizing: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+Legalizing truncating store operations
+
+Combining: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+
+Legalizing: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+Legalizing truncating store operations
+
+Combining: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+
+Legalizing: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, t39, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+Legalizing store operation
+Optimizing float store operations
+Legal store
+
+Combining: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, t39, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+
+Legalizing: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+Legalizing truncating store operations
+
+Combining: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+
+Legalizing: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+Legalizing truncating store operations
+
+Combining: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+
+Legalizing: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+Trying custom legalization
+Could not custom legalize node
+Trying to expand node
+
+Combining: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+
+Legalizing: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+Legal node: nothing to do
+
+Combining: t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+
+Legalizing: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+Legal node: nothing to do
+
+Combining: t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+
+Legalizing: t33: i64 = Constant<0>
+Legal node: nothing to do
+
+Combining: t33: i64 = Constant<0>
+
+Legalizing: t32: i64 = Constant<1>
+Legal node: nothing to do
+
+Combining: t32: i64 = Constant<1>
+
+Legalizing: t31: i64 = Constant<2>
+Legal node: nothing to do
+
+Combining: t31: i64 = Constant<2>
+
+Legalizing: t29: ch = BasicBlock< 0x7f716405f128>
+Legal node: nothing to do
+
+Combining: t29: ch = BasicBlock< 0x7f716405f128>
+
+Legalizing: t26: Untyped = RegisterMask
+Legal node: nothing to do
+
+Combining: t26: Untyped = RegisterMask
+
+Legalizing: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+Legal node: nothing to do
+
+Combining: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+
+Legalizing: t23: iFATPTR128 = Register $c10
+
+Combining: t23: iFATPTR128 = Register $c10
+
+Legalizing: t21: i64 = TargetConstant<0>
+
+Combining: t21: i64 = TargetConstant<0>
+
+Legalizing: t18: i64 = Constant<32>
+Legal node: nothing to do
+
+Combining: t18: i64 = Constant<32>
+
+Legalizing: t17: i64 = TargetConstant<15>
+
+Combining: t17: i64 = TargetConstant<15>
+
+Legalizing: t8: i64 = Constant<20>
+Legal node: nothing to do
+
+Combining: t8: i64 = Constant<20>
+
+Legalizing: t6: iFATPTR128 = undef
+Legal node: nothing to do
+
+Combining: t6: iFATPTR128 = undef
+
+Legalizing: t3: i64 = Constant<16>
+Legal node: nothing to do
+
+Combining: t3: i64 = Constant<16>
+
+Legalizing: t1: iFATPTR128 = FrameIndex<0>
+Legal node: nothing to do
+
+Combining: t1: iFATPTR128 = FrameIndex<0>
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+
+Combining: t0: ch = EntryToken
+Optimized legalized selection DAG: %bb.0 '_start:'
+SelectionDAG has 30 nodes:
+  t4: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<16>
+  t9: iFATPTR128 = PTRADD FrameIndex:iFATPTR128<0>, Constant:i64<20>
+                t0: ch = EntryToken
+              t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+            t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+            t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+          t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, t39, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+        t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+      t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+    t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+    t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+  t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+  t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+    t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+  t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+
+
+===== Instruction selection begins: %bb.0 ''
+
+ISEL: Starting selection on root node: t30: ch = br t28, BasicBlock:ch< 0x7f716405f128>
+ISEL: Starting pattern match
+  Initial Opcode index to 1020055
+  Skipped scope entry (due to false predicate) at index 1020064, continuing at 1020073
+  Morphed node: t30: ch = PseudoCBR BasicBlock:ch< 0x7f716405f128>, t28
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t28: ch,glue = callseq_end t27, TargetConstant:i64<0>, TargetConstant:i64<0>, t27:1
+ISEL: Starting pattern match
+  Initial Opcode index to 980496
+  Skipped scope entry (due to false predicate) at index 980512, continuing at 980522
+  Morphed node: t28: ch,glue = ADJCALLSTACKUPCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t27, t27:1
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t27: ch,glue = RISCVISD::CAP_CALL t24, TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24:1
+ISEL: Starting pattern match
+  Initial Opcode index to 982074
+  OpcodeSwitch from 982080 to 982084
+  TypeSwitch[iFATPTR128] from 982084 to 982087
+  Morphed node: t27: ch,glue = PseudoCCALL TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24, t24:1
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+ISEL: Starting selection on root node: t22: ch,glue = callseq_start t37, TargetConstant:i64<0>, TargetConstant:i64<0>
+ISEL: Starting pattern match
+  Initial Opcode index to 980456
+  Skipped scope entry (due to false predicate) at index 980471, continuing at 980481
+  Morphed node: t22: ch,glue = ADJCALLSTACKDOWNCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t37
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t37: ch = store<(store (s32) into %ir.6, addrspace 200), trunc to i32> t36, Constant:i64<2>, t9, undef:iFATPTR128
+ISEL: Starting pattern match
+  Initial Opcode index to 137425
+  Skipped scope entry (due to false predicate) at index 137431, continuing at 137605
+  Skipped scope entry (due to false predicate) at index 137607, continuing at 138020
+  Skipped scope entry (due to false predicate) at index 138022, continuing at 138435
+  OpcodeSwitch from 138443 to 138550
+  Skipped scope entry (due to false predicate) at index 138574, continuing at 138592
+  Skipped scope entry (due to false predicate) at index 138593, continuing at 138611
+  Match failed at index 138572
+  Continuing at 138612
+  Match failed at index 138613
+  Continuing at 138631
+  Match failed at index 138636
+  Continuing at 138652
+  Match failed at index 138653
+  Continuing at 138671
+  Continuing at 138672
+  Skipped scope entry (due to false predicate) at index 138691, continuing at 138706
+  Skipped scope entry (due to false predicate) at index 138707, continuing at 138722
+  Morphed node: t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> Constant:i64<2>, TargetFrameIndex:iFATPTR128<0>, t36
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t36: ch = store<(store (s32) into %ir.5, align 16, addrspace 200), trunc to i32> t12, Constant:i64<1>, t4, undef:iFATPTR128
+ISEL: Starting pattern match
+  Initial Opcode index to 137425
+  Skipped scope entry (due to false predicate) at index 137431, continuing at 137605
+  Skipped scope entry (due to false predicate) at index 137607, continuing at 138020
+  Skipped scope entry (due to false predicate) at index 138022, continuing at 138435
+  OpcodeSwitch from 138443 to 138550
+  Skipped scope entry (due to false predicate) at index 138574, continuing at 138592
+  Skipped scope entry (due to false predicate) at index 138593, continuing at 138611
+  Match failed at index 138572
+  Continuing at 138612
+  Match failed at index 138613
+  Continuing at 138631
+  Match failed at index 138636
+  Continuing at 138652
+  Match failed at index 138653
+  Continuing at 138671
+  Continuing at 138672
+  Skipped scope entry (due to false predicate) at index 138691, continuing at 138706
+  Skipped scope entry (due to false predicate) at index 138707, continuing at 138722
+  Morphed node: t36: ch = CSSWS<Mem:(store (s32) into %ir.5, align 16, addrspace 200)> Constant:i64<1>, TargetFrameIndex:iFATPTR128<0>, t12
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t12: ch = store<(store (s128) into %ir.4, addrspace 200)> t35, t39, FrameIndex:iFATPTR128<0>, undef:iFATPTR128
+ISEL: Starting pattern match
+  Initial Opcode index to 137425
+  Skipped scope entry (due to false predicate) at index 137431, continuing at 137605
+  Skipped scope entry (due to false predicate) at index 137607, continuing at 138020
+  Match failed at index 138028
+  Continuing at 138262
+  Skipped scope entry (due to false predicate) at index 138271, continuing at 138288
+  Skipped scope entry (due to false predicate) at index 138293, continuing at 138310
+  Skipped scope entry (due to false predicate) at index 138311, continuing at 138328
+  Morphed node: t12: ch = CSSTC<Mem:(store (s128) into %ir.4, addrspace 200)> t39, TargetFrameIndex:iFATPTR128<0>, t35
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t35: ch = store<(store (s32) into %ir.3, addrspace 200), trunc to i32> t34, Constant:i64<0>, t9, undef:iFATPTR128
+ISEL: Starting pattern match
+  Initial Opcode index to 137425
+  Skipped scope entry (due to false predicate) at index 137431, continuing at 137605
+  Skipped scope entry (due to false predicate) at index 137607, continuing at 138020
+  Skipped scope entry (due to false predicate) at index 138022, continuing at 138435
+  OpcodeSwitch from 138443 to 138550
+  Skipped scope entry (due to false predicate) at index 138574, continuing at 138592
+  Skipped scope entry (due to false predicate) at index 138593, continuing at 138611
+  Match failed at index 138572
+  Continuing at 138612
+  Match failed at index 138613
+  Continuing at 138631
+  Match failed at index 138636
+  Continuing at 138652
+  Match failed at index 138653
+  Continuing at 138671
+  Continuing at 138672
+  Skipped scope entry (due to false predicate) at index 138691, continuing at 138706
+  Skipped scope entry (due to false predicate) at index 138707, continuing at 138722
+  Morphed node: t35: ch = CSSWS<Mem:(store (s32) into %ir.3, addrspace 200)> Constant:i64<0>, TargetFrameIndex:iFATPTR128<0>, t34
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t34: ch = store<(store (s32) into %ir.2, align 16, addrspace 200), trunc to i32> t0, Constant:i64<0>, t4, undef:iFATPTR128
+ISEL: Starting pattern match
+  Initial Opcode index to 137425
+  Skipped scope entry (due to false predicate) at index 137431, continuing at 137605
+  Skipped scope entry (due to false predicate) at index 137607, continuing at 138020
+  Skipped scope entry (due to false predicate) at index 138022, continuing at 138435
+  OpcodeSwitch from 138443 to 138550
+  Skipped scope entry (due to false predicate) at index 138574, continuing at 138592
+  Skipped scope entry (due to false predicate) at index 138593, continuing at 138611
+  Match failed at index 138572
+  Continuing at 138612
+  Match failed at index 138613
+  Continuing at 138631
+  Match failed at index 138636
+  Continuing at 138652
+  Match failed at index 138653
+  Continuing at 138671
+  Continuing at 138672
+  Skipped scope entry (due to false predicate) at index 138691, continuing at 138706
+  Skipped scope entry (due to false predicate) at index 138707, continuing at 138722
+  Morphed node: t34: ch = CSSWS<Mem:(store (s32) into %ir.2, align 16, addrspace 200)> Constant:i64<0>, TargetFrameIndex:iFATPTR128<0>, t0
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+== t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+
+ISEL: Starting selection on root node: t19: iFATPTR128 = llvm.cheri.bounded.stack.cap TargetConstant:i64<15>, FrameIndex:iFATPTR128<0>, Constant:i64<32>
+ISEL: Starting pattern match
+  Initial Opcode index to 155764
+  Skipped scope entry (due to false predicate) at index 155766, continuing at 155859
+  Skipped scope entry (due to false predicate) at index 155861, continuing at 156000
+  Skipped scope entry (due to false predicate) at index 156002, continuing at 156344
+  Skipped scope entry (due to false predicate) at index 156346, continuing at 156807
+  Skipped scope entry (due to false predicate) at index 156809, continuing at 157151
+  Skipped scope entry (due to false predicate) at index 157153, continuing at 157614
+  Skipped scope entry (due to false predicate) at index 157615, continuing at 157710
+Creating constant: t41: i64 = TargetConstant<32>
+  Morphed node: t19: iFATPTR128 = CSetBoundsImm FrameIndex:iFATPTR128<0>, TargetConstant:i64<32>
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t38: iFATPTR128 = TargetGlobalAddress<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+ISEL: Starting selection on root node: t33: i64 = Constant<0>
+Creating new node: t43: i64,ch = CopyFromReg t0, Register:i64 $x0
+
+ISEL: Starting selection on root node: t32: i64 = Constant<1>
+Creating constant: t44: i64 = TargetConstant<1>
+Creating new machine node: t45: i64 = ADDI Register:i64 $x0, TargetConstant:i64<1>
+
+ISEL: Starting selection on root node: t31: i64 = Constant<2>
+Creating constant: t46: i64 = TargetConstant<2>
+Creating new machine node: t47: i64 = ADDI Register:i64 $x0, TargetConstant:i64<2>
+
+ISEL: Starting selection on root node: t29: ch = BasicBlock< 0x7f716405f128>
+
+ISEL: Starting selection on root node: t26: Untyped = RegisterMask
+
+ISEL: Starting selection on root node: t25: iFATPTR128 = TargetGlobalAddress<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17]
+
+ISEL: Starting selection on root node: t23: iFATPTR128 = Register $c10
+
+ISEL: Starting selection on root node: t21: i64 = TargetConstant<0>
+
+ISEL: Starting selection on root node: t1: iFATPTR128 = FrameIndex<0>
+Creating new machine node: t48: iFATPTR128 = CIncOffsetImm TargetFrameIndex:iFATPTR128<0>, TargetConstant:i64<0>
+
+ISEL: Starting selection on root node: t0: ch = EntryToken
+
+===== Instruction selection ends:
+Selected selection DAG: %bb.0 '_start:'
+SelectionDAG has 28 nodes:
+  t0: ch = EntryToken
+        t47: i64 = ADDI Register:i64 $x0, TargetConstant:i64<2>
+          t45: i64 = ADDI Register:i64 $x0, TargetConstant:i64<1>
+            t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+              t34: ch = CSSWS<Mem:(store (s32) into %ir.2, align 16, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t0
+            t35: ch = CSSWS<Mem:(store (s32) into %ir.3, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t34
+          t12: ch = CSSTC<Mem:(store (s128) into %ir.4, addrspace 200)> t39, TargetFrameIndex:iFATPTR128<0>, t35
+        t36: ch = CSSWS<Mem:(store (s32) into %ir.5, align 16, addrspace 200)> t45, TargetFrameIndex:iFATPTR128<0>, t12
+      t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> t47, TargetFrameIndex:iFATPTR128<0>, t36
+    t22: ch,glue = ADJCALLSTACKDOWNCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t37
+      t48: iFATPTR128 = CIncOffsetImm TargetFrameIndex:iFATPTR128<0>, TargetConstant:i64<0>
+    t19: iFATPTR128 = CSetBoundsImm t48, TargetConstant:i64<32>
+  t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+  t27: ch,glue = PseudoCCALL TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24, t24:1
+  t43: i64,ch = CopyFromReg t0, Register:i64 $x0
+    t28: ch,glue = ADJCALLSTACKUPCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t27, t27:1
+  t30: ch = PseudoCBR BasicBlock:ch< 0x7f716405f128>, t28
+
+
+********** List Scheduling %bb.0 '' **********
+SU(0): t30: ch = PseudoCBR BasicBlock:ch< 0x7f716405f128>, t28
+
+  # preds left       : 1
+  # succs left       : 0
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 8
+  Height             : 0
+  Predecessors:
+    SU(1): Ord  Latency=1 Barrier
+SU(1): t28: ch,glue = ADJCALLSTACKUPCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t27, t27:1
+
+    t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+    t27: ch,glue = PseudoCCALL TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24, t24:1
+
+  # preds left       : 2
+  # succs left       : 1
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 7
+  Height             : 1
+  Predecessors:
+    SU(4): Ord  Latency=1 Barrier
+    SU(2): Data Latency=1
+  Successors:
+    SU(0): Ord  Latency=1 Barrier
+SU(2): t19: iFATPTR128 = CSetBoundsImm t48, TargetConstant:i64<32>
+
+  # preds left       : 1
+  # succs left       : 1
+  # rdefs left       : 1
+  Latency            : 1
+  Depth              : 1
+  Height             : 2
+  Predecessors:
+    SU(3): Data Latency=1
+  Successors:
+    SU(1): Data Latency=1
+SU(3): t48: iFATPTR128 = CIncOffsetImm TargetFrameIndex:iFATPTR128<0>, TargetConstant:i64<0>
+
+  # preds left       : 0
+  # succs left       : 1
+  # rdefs left       : 1
+  Latency            : 1
+  Depth              : 0
+  Height             : 3
+  Successors:
+    SU(2): Data Latency=1
+SU(4): t22: ch,glue = ADJCALLSTACKDOWNCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t37
+
+  # preds left       : 1
+  # succs left       : 1
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 6
+  Height             : 2
+  Predecessors:
+    SU(5): Ord  Latency=1 Barrier
+  Successors:
+    SU(1): Ord  Latency=1 Barrier
+SU(5): t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> t47, TargetFrameIndex:iFATPTR128<0>, t36
+
+  # preds left       : 2
+  # succs left       : 1
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 5
+  Height             : 3
+  Predecessors:
+    SU(13): Data Latency=1
+    SU(6): Ord  Latency=1 Barrier
+  Successors:
+    SU(4): Ord  Latency=1 Barrier
+SU(6): t36: ch = CSSWS<Mem:(store (s32) into %ir.5, align 16, addrspace 200)> t45, TargetFrameIndex:iFATPTR128<0>, t12
+
+  # preds left       : 2
+  # succs left       : 1
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 4
+  Height             : 4
+  Predecessors:
+    SU(12): Data Latency=1
+    SU(7): Ord  Latency=1 Barrier
+  Successors:
+    SU(5): Ord  Latency=1 Barrier
+SU(7): t12: ch = CSSTC<Mem:(store (s128) into %ir.4, addrspace 200)> t39, TargetFrameIndex:iFATPTR128<0>, t35
+
+  # preds left       : 2
+  # succs left       : 1
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 3
+  Height             : 5
+  Predecessors:
+    SU(11): Data Latency=1
+    SU(8): Ord  Latency=1 Barrier
+  Successors:
+    SU(6): Ord  Latency=1 Barrier
+SU(8): t35: ch = CSSWS<Mem:(store (s32) into %ir.3, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t34
+
+  # preds left       : 2
+  # succs left       : 1
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 2
+  Height             : 6
+  Predecessors:
+    SU(10): Data Latency=1
+    SU(9): Ord  Latency=1 Barrier
+  Successors:
+    SU(7): Ord  Latency=1 Barrier
+SU(9): t34: ch = CSSWS<Mem:(store (s32) into %ir.2, align 16, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t0
+
+  # preds left       : 1
+  # succs left       : 1
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 1
+  Height             : 7
+  Predecessors:
+    SU(10): Data Latency=1
+  Successors:
+    SU(8): Ord  Latency=1 Barrier
+SU(10): t43: i64,ch = CopyFromReg t0, Register:i64 $x0
+
+  # preds left       : 0
+  # succs left       : 2
+  # rdefs left       : 1
+  Latency            : 1
+  Depth              : 0
+  Height             : 8
+  Successors:
+    SU(8): Data Latency=1
+    SU(9): Data Latency=1
+SU(11): t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+  # preds left       : 0
+  # succs left       : 1
+  # rdefs left       : 1
+  Latency            : 1
+  Depth              : 0
+  Height             : 6
+  Successors:
+    SU(7): Data Latency=1
+SU(12): t45: i64 = ADDI Register:i64 $x0, TargetConstant:i64<1>
+
+  # preds left       : 0
+  # succs left       : 1
+  # rdefs left       : 1
+  Latency            : 1
+  Depth              : 0
+  Height             : 5
+  Successors:
+    SU(6): Data Latency=1
+SU(13): t47: i64 = ADDI Register:i64 $x0, TargetConstant:i64<2>
+
+  # preds left       : 0
+  # succs left       : 1
+  # rdefs left       : 1
+  Latency            : 1
+  Depth              : 0
+  Height             : 4
+  Successors:
+    SU(5): Data Latency=1
+
+Examining Available:
+Height 0: SU(0): t30: ch = PseudoCBR BasicBlock:ch< 0x7f716405f128>, t28
+
+
+*** Scheduling [0]: SU(0): t30: ch = PseudoCBR BasicBlock:ch< 0x7f716405f128>, t28
+
+
+Examining Available:
+Height 1: SU(1): t28: ch,glue = ADJCALLSTACKUPCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t27, t27:1
+
+    t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+    t27: ch,glue = PseudoCCALL TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24, t24:1
+
+
+*** Scheduling [1]: SU(1): t28: ch,glue = ADJCALLSTACKUPCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t27, t27:1
+
+    t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+    t27: ch,glue = PseudoCCALL TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24, t24:1
+
+
+Examining Available:
+Height 2: SU(4): t22: ch,glue = ADJCALLSTACKDOWNCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t37
+
+Height 2: SU(2): t19: iFATPTR128 = CSetBoundsImm t48, TargetConstant:i64<32>
+
+
+*** Scheduling [2]: SU(4): t22: ch,glue = ADJCALLSTACKDOWNCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t37
+
+
+Examining Available:
+Height 2: SU(2): t19: iFATPTR128 = CSetBoundsImm t48, TargetConstant:i64<32>
+
+Height 3: SU(5): t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> t47, TargetFrameIndex:iFATPTR128<0>, t36
+
+
+*** Scheduling [3]: SU(2): t19: iFATPTR128 = CSetBoundsImm t48, TargetConstant:i64<32>
+
+
+Examining Available:
+Height 4: SU(3): t48: iFATPTR128 = CIncOffsetImm TargetFrameIndex:iFATPTR128<0>, TargetConstant:i64<0>
+
+Height 3: SU(5): t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> t47, TargetFrameIndex:iFATPTR128<0>, t36
+
+
+*** Scheduling [4]: SU(3): t48: iFATPTR128 = CIncOffsetImm TargetFrameIndex:iFATPTR128<0>, TargetConstant:i64<0>
+
+
+Examining Available:
+Height 3: SU(5): t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> t47, TargetFrameIndex:iFATPTR128<0>, t36
+
+
+*** Scheduling [5]: SU(5): t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> t47, TargetFrameIndex:iFATPTR128<0>, t36
+
+
+Examining Available:
+Height 6: SU(13): t47: i64 = ADDI Register:i64 $x0, TargetConstant:i64<2>
+
+Height 6: SU(6): t36: ch = CSSWS<Mem:(store (s32) into %ir.5, align 16, addrspace 200)> t45, TargetFrameIndex:iFATPTR128<0>, t12
+
+
+*** Scheduling [6]: SU(13): t47: i64 = ADDI Register:i64 $x0, TargetConstant:i64<2>
+
+
+Examining Available:
+Height 6: SU(6): t36: ch = CSSWS<Mem:(store (s32) into %ir.5, align 16, addrspace 200)> t45, TargetFrameIndex:iFATPTR128<0>, t12
+
+
+*** Scheduling [7]: SU(6): t36: ch = CSSWS<Mem:(store (s32) into %ir.5, align 16, addrspace 200)> t45, TargetFrameIndex:iFATPTR128<0>, t12
+
+
+Examining Available:
+Height 8: SU(12): t45: i64 = ADDI Register:i64 $x0, TargetConstant:i64<1>
+
+Height 8: SU(7): t12: ch = CSSTC<Mem:(store (s128) into %ir.4, addrspace 200)> t39, TargetFrameIndex:iFATPTR128<0>, t35
+
+
+*** Scheduling [8]: SU(12): t45: i64 = ADDI Register:i64 $x0, TargetConstant:i64<1>
+
+
+Examining Available:
+Height 8: SU(7): t12: ch = CSSTC<Mem:(store (s128) into %ir.4, addrspace 200)> t39, TargetFrameIndex:iFATPTR128<0>, t35
+
+
+*** Scheduling [9]: SU(7): t12: ch = CSSTC<Mem:(store (s128) into %ir.4, addrspace 200)> t39, TargetFrameIndex:iFATPTR128<0>, t35
+
+
+Examining Available:
+Height 10: SU(11): t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+Height 10: SU(8): t35: ch = CSSWS<Mem:(store (s32) into %ir.3, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t34
+
+
+*** Scheduling [10]: SU(11): t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+
+Examining Available:
+Height 10: SU(8): t35: ch = CSSWS<Mem:(store (s32) into %ir.3, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t34
+
+
+*** Scheduling [11]: SU(8): t35: ch = CSSWS<Mem:(store (s32) into %ir.3, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t34
+
+
+Examining Available:
+Height 12: SU(9): t34: ch = CSSWS<Mem:(store (s32) into %ir.2, align 16, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t0
+
+
+*** Scheduling [12]: SU(9): t34: ch = CSSWS<Mem:(store (s32) into %ir.2, align 16, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t0
+
+
+Examining Available:
+Height 13: SU(10): t43: i64,ch = CopyFromReg t0, Register:i64 $x0
+
+
+*** Scheduling [13]: SU(10): t43: i64,ch = CopyFromReg t0, Register:i64 $x0
+
+*** Final schedule ***
+SU(10): t43: i64,ch = CopyFromReg t0, Register:i64 $x0
+
+SU(9): t34: ch = CSSWS<Mem:(store (s32) into %ir.2, align 16, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t0
+
+SU(8): t35: ch = CSSWS<Mem:(store (s32) into %ir.3, addrspace 200)> t43, TargetFrameIndex:iFATPTR128<0>, t34
+
+SU(11): t39: iFATPTR128 = PseudoCLGC<Mem:(dereferenceable invariant load (s128) from got)> TargetGlobalAddress:iFATPTR128<<{ [4 x i8] }> addrspace(200)* @_ZN5main21X17h0f3a926ec0b1b112E> 0
+
+SU(7): t12: ch = CSSTC<Mem:(store (s128) into %ir.4, addrspace 200)> t39, TargetFrameIndex:iFATPTR128<0>, t35
+
+SU(12): t45: i64 = ADDI Register:i64 $x0, TargetConstant:i64<1>
+
+SU(6): t36: ch = CSSWS<Mem:(store (s32) into %ir.5, align 16, addrspace 200)> t45, TargetFrameIndex:iFATPTR128<0>, t12
+
+SU(13): t47: i64 = ADDI Register:i64 $x0, TargetConstant:i64<2>
+
+SU(5): t37: ch = CSSWS<Mem:(store (s32) into %ir.6, addrspace 200)> t47, TargetFrameIndex:iFATPTR128<0>, t36
+
+SU(3): t48: iFATPTR128 = CIncOffsetImm TargetFrameIndex:iFATPTR128<0>, TargetConstant:i64<0>
+
+SU(2): t19: iFATPTR128 = CSetBoundsImm t48, TargetConstant:i64<32>
+
+SU(4): t22: ch,glue = ADJCALLSTACKDOWNCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t37
+
+SU(1): t28: ch,glue = ADJCALLSTACKUPCAP TargetConstant:i64<0>, TargetConstant:i64<0>, t27, t27:1
+
+    t24: ch,glue = CopyToReg t22, Register:iFATPTR128 $c10, t19
+
+    t27: ch,glue = PseudoCCALL TargetGlobalAddress:iFATPTR128<void (%0 addrspace(200)*) addrspace(200)* @_ZN5main23foo17hf197913805653d0aE> 0 [TF=17], Register:iFATPTR128 $c10, RegisterMask:Untyped, t24, t24:1
+
+SU(0): t30: ch = PseudoCBR BasicBlock:ch< 0x7f716405f128>, t28
+
+
+Total amount of phi nodes to update: 0
+Creating new node: t1: ch = RISCVISD::RET_FLAG t0
+Initial selection DAG: %bb.1 '_start:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+
+Combining: t1: ch = RISCVISD::RET_FLAG t0
+
+Combining: t0: ch = EntryToken
+Optimized lowered selection DAG: %bb.1 '_start:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+Legalizing node: t0: ch = EntryToken
+Analyzing result type: ch
+Legal result type
+Legally typed node: t0: ch = EntryToken
+
+Legalizing node: t1: ch = RISCVISD::RET_FLAG t0
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t0: ch = EntryToken
+Legal operand
+Legally typed node: t1: ch = RISCVISD::RET_FLAG t0
+
+Legalizing node: t65535: ch = handlenode t1
+Analyzing result type: ch
+Legal result type
+Analyzing operand: t1: ch = RISCVISD::RET_FLAG t0
+Legal operand
+Legally typed node: t65535: ch = handlenode t1
+
+Type-legalized selection DAG: %bb.1 '_start:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+
+Legalizing: t1: ch = RISCVISD::RET_FLAG t0
+Legal node: nothing to do
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+Legalized selection DAG: %bb.1 '_start:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+
+Legalizing: t1: ch = RISCVISD::RET_FLAG t0
+Legal node: nothing to do
+
+Combining: t1: ch = RISCVISD::RET_FLAG t0
+
+Legalizing: t0: ch = EntryToken
+Legal node: nothing to do
+
+Combining: t0: ch = EntryToken
+Optimized legalized selection DAG: %bb.1 '_start:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = RISCVISD::RET_FLAG t0
+
+
+===== Instruction selection begins: %bb.1 ''
+
+ISEL: Starting selection on root node: t1: ch = RISCVISD::RET_FLAG t0
+ISEL: Starting pattern match
+  Initial Opcode index to 1020087
+  Skipped scope entry (due to false predicate) at index 1020091, continuing at 1020099
+  Morphed node: t1: ch = PseudoCRET t0
+ISEL: Match complete!
+
+ISEL: Starting selection on root node: t0: ch = EntryToken
+
+===== Instruction selection ends:
+Selected selection DAG: %bb.1 '_start:'
+SelectionDAG has 2 nodes:
+    t0: ch = EntryToken
+  t1: ch = PseudoCRET t0
+
+
+********** List Scheduling %bb.1 '' **********
+SU(0): t1: ch = PseudoCRET t0
+
+  # preds left       : 0
+  # succs left       : 0
+  # rdefs left       : 0
+  Latency            : 1
+  Depth              : 0
+  Height             : 0
+
+Examining Available:
+Height 0: SU(0): t1: ch = PseudoCRET t0
+
+
+*** Scheduling [0]: SU(0): t1: ch = PseudoCRET t0
+
+*** Final schedule ***
+SU(0): t1: ch = PseudoCRET t0
+
+
+Total amount of phi nodes to update: 0
+*** MachineFunction at end of ISel ***
+# Machine code for function _start: IsSSA, TracksLiveness
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+# *** IR Dump After RISCV DAG->DAG Pattern Instruction Selection (<no PI>) ***:
+# Machine code for function _start: IsSSA, TracksLiveness
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+# *** IR Dump After Finalize ISel and expand pseudo-instructions (finalize-isel) ***:
+# Machine code for function _start: IsSSA, TracksLiveness
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+# *** IR Dump After Local Stack Slot Allocation (localstackalloc) ***:
+# Machine code for function _start: IsSSA, TracksLiveness
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+# *** IR Dump After RISCV Insert VSETVLI pass (riscv-insert-vsetvli) ***:
+# Machine code for function _start: IsSSA, TracksLiveness
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+# *** IR Dump After Eliminate PHI nodes for register allocation (phi-node-elimination) ***:
+# Machine code for function _start: NoPHIs, TracksLiveness
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+********** REWRITING TWO-ADDR INSTRS **********
+********** Function: _start
+# *** IR Dump After Two-Address instruction pass (twoaddressinstruction) ***:
+# Machine code for function _start: NoPHIs, TracksLiveness, TiedOpsRewritten
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+********** FAST REGISTER ALLOCATION **********
+********** Function: _start
+
+Allocating bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  %0:gpr = COPY $x0
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  %2:gpr = ADDI $x0, 1
+  CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  %3:gpr = ADDI $x0, 2
+  CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  %4:gpcr = CIncOffsetImm %stack.0, 0
+  %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  $c10 = COPY %5:gpcr
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+>> PseudoCBR %bb.1
+Regs:
+<< PseudoCBR %bb.1
+
+>> ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+Regs:
+<< ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+
+>> PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit $c10, implicit-def $c2
+Regs:
+Freeing $c1:
+<< PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit killed $c10, implicit-def $c2
+
+>> $c10 = COPY %5:gpcr
+Regs: X10[P]
+Freeing $c10:
+Search register for %5 in class GPCR with hint $c10
+	Preferred Register 1: $c10
+Assigning %5 to $c10
+<< $c10 = COPY killed renamable $c10
+Mark identity copy for removal
+
+>> ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+Regs: X10=%5
+<< ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+
+>> %5:gpcr = CSetBoundsImm killed %4:gpcr, 32
+Regs: X10=%5
+In def of %5 use existing assignment to $c10
+Freeing $c10: %5
+Search register for %4 in class GPCR with hint $noreg
+AllocationOrder(GPCR) = [ $c10 $c11 $c12 $c13 $c14 $c15 $c16 $c17 $c5 $c6 $c7 $c28 $c29 $c30 $c31 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $c1 ]
+	Register: $c10 Cost: 0 BestCost: 4294967295
+Assigning %4 to $c10
+<< renamable $c10 = CSetBoundsImm killed renamable $c10, 32
+
+>> %4:gpcr = CIncOffsetImm %stack.0, 0
+Regs: X10=%4
+In def of %4 use existing assignment to $c10
+Freeing $c10: %4
+<< renamable $c10 = CIncOffsetImm %stack.0, 0
+
+>> CSSWS killed %3:gpr, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+Regs:
+Search register for %3 in class GPR with hint $noreg
+AllocationOrder(GPR) = [ $x10 $x11 $x12 $x13 $x14 $x15 $x16 $x17 $x5 $x6 $x7 $x28 $x29 $x30 $x31 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27 $x1 ]
+	Register: $x10 Cost: 0 BestCost: 4294967295
+Assigning %3 to $x10
+<< CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+
+>> %3:gpr = ADDI $x0, 2
+Regs: X10=%3
+In def of %3 use existing assignment to $x10
+Freeing $x10: %3
+<< renamable $x10 = ADDI $x0, 2
+
+>> CSSWS killed %2:gpr, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+Regs:
+Search register for %2 in class GPR with hint $noreg
+	Register: $x10 Cost: 0 BestCost: 4294967295
+Assigning %2 to $x10
+<< CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+
+>> %2:gpr = ADDI $x0, 1
+Regs: X10=%2
+In def of %2 use existing assignment to $x10
+Freeing $x10: %2
+<< renamable $x10 = ADDI $x0, 1
+
+>> CSSTC killed %1:gpcr, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+Regs:
+Search register for %1 in class GPCR with hint $noreg
+	Register: $c10 Cost: 0 BestCost: 4294967295
+Assigning %1 to $c10
+<< CSSTC killed renamable $c10, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+
+>> %1:gpcr = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+Regs: X10=%1
+In def of %1 use existing assignment to $c10
+Freeing $c10: %1
+<< renamable $c10 = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+
+>> CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+Regs:
+Search register for %0 in class GPR with hint $noreg
+	Register: $x10 Cost: 0 BestCost: 4294967295
+Assigning %0 to $x10
+<< CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+
+>> CSSWS %0:gpr, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+Regs: X10=%0
+<< CSSWS renamable $x10, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+
+>> %0:gpr = COPY $x0
+Regs: X10=%0
+In def of %0 use existing assignment to $x10
+Freeing $x10: %0
+<< renamable $x10 = COPY $x0
+Begin Regs:
+Loading live registers at begin of block.
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  renamable $x10 = COPY $x0
+  CSSWS renamable $x10, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  renamable $c10 = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed renamable $c10, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  renamable $x10 = ADDI $x0, 1
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  renamable $x10 = ADDI $x0, 2
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  renamable $c10 = CIncOffsetImm %stack.0, 0
+  renamable $c10 = CSetBoundsImm killed renamable $c10, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit killed $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+Allocating bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+>> PseudoCRET
+Regs:
+<< PseudoCRET
+Begin Regs:
+Loading live registers at begin of block.
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+# *** IR Dump After Fast Register Allocator (regallocfast) ***:
+# Machine code for function _start: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  renamable $x10 = COPY $x0
+  CSSWS renamable $x10, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  renamable $c10 = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed renamable $c10, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  renamable $x10 = ADDI $x0, 1
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  renamable $x10 = ADDI $x0, 2
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  renamable $c10 = CIncOffsetImm %stack.0, 0
+  renamable $c10 = CSetBoundsImm killed renamable $c10, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit killed $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+# *** IR Dump After Remove Redundant DEBUG_VALUE analysis (removeredundantdebugvalues) ***:
+# Machine code for function _start: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  renamable $x10 = COPY $x0
+  CSSWS renamable $x10, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  renamable $c10 = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed renamable $c10, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  renamable $x10 = ADDI $x0, 1
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  renamable $x10 = ADDI $x0, 2
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  renamable $c10 = CIncOffsetImm %stack.0, 0
+  renamable $c10 = CSetBoundsImm killed renamable $c10, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit killed $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+# *** IR Dump After Fixup Statepoint Caller Saved (fixup-statepoint-caller-saved) ***:
+# Machine code for function _start: NoPHIs, TracksLiveness, NoVRegs, TiedOpsRewritten
+Frame Objects:
+  fi#0: size=32, align=16, at location [SP]
+
+bb.0 (%ir-block.0):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+
+  renamable $x10 = COPY $x0
+  CSSWS renamable $x10, %stack.0 :: (store (s32) into %ir.2, align 16, addrspace 200)
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.3, addrspace 200)
+  renamable $c10 = PseudoCLGC @_ZN5main21X17h0f3a926ec0b1b112E :: (dereferenceable invariant load (s128) from got)
+  CSSTC killed renamable $c10, %stack.0 :: (store (s128) into %ir.4, addrspace 200)
+  renamable $x10 = ADDI $x0, 1
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.5, align 16, addrspace 200)
+  renamable $x10 = ADDI $x0, 2
+  CSSWS killed renamable $x10, %stack.0 :: (store (s32) into %ir.6, addrspace 200)
+  renamable $c10 = CIncOffsetImm %stack.0, 0
+  renamable $c10 = CSetBoundsImm killed renamable $c10, 32
+  ADJCALLSTACKDOWNCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCCALL target-flags(riscv-ccall) @_ZN5main23foo17hf197913805653d0aE, <regmask $c0 $c1 $c3 $c4 $c8 $c9 $c18 $c19 $c20 $c21 $c22 $c23 $c24 $c25 $c26 $c27 $x0 $x1 $x3 $x4 $x8 $x9 $x18 $x19 $x20 $x21 $x22 $x23 $x24 $x25 $x26 $x27>, implicit-def dead $c1, implicit killed $c10, implicit-def $c2
+  ADJCALLSTACKUPCAP 0, 0, implicit-def dead $c2, implicit $c2
+  PseudoCBR %bb.1
+
+bb.1 (%ir-block.10):
+; predecessors: %bb.0
+
+  PseudoCRET
+
+# End machine code for function _start.
+
+alloc FI(1) at SP[-16]
+alloc FI(0) at SP[-48]
+rustc: /mnt/archive1/atharv/work/capstone-llvm/llvm/include/llvm/CodeGen/MachineInstr.h:504: llvm::MachineOperand &llvm::MachineInstr::getOperand(unsigned int): Assertion `i < getNumOperands() && "getOperand() out of range!"' failed.
