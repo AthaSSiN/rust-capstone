@@ -1,0 +1,30 @@
+BootStrap: docker
+From: ubuntu:22.04
+
+%environment
+    export LD_LIBRARY_PATH=/home/atharv/capstone-llvm/build/lib:$LD_LIBRARY_PATH
+
+%post
+    apt-get update
+    apt-get install -y python3 git build-essential curl pkg-config cmake lld
+
+%runscript
+    #!/bin/bash
+    if [ -z "$1" ]; then
+        echo "Please specify command (clean, build, run)"
+        exit 1
+    fi
+    if [ "$1" = "clean" ]; then
+        rm -rf build
+    elif [ "$1" = "build" ]; then
+        ./x.py build --target=riscv64gc-unknown-none-purecap ${@:2}
+    elif [ "$1" = "run" ]; then
+        build/x86_64-unknown-linux-gnu/stage1/bin/rustc --target=riscv64gc-unknown-none-purecap --emit=asm -C llvm-args=-print-after-all -C llvm-args=-debug ${@:2}
+    else
+        echo "Unrecognised command"
+        exit 1
+    fi
+
+%labels
+    Author Atharv Singh Patlan
+
