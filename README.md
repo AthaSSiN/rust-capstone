@@ -1,3 +1,29 @@
+# Capstone support for rust
+
+We have provided support to build the compiler out of the box using apptainer.
+
+Upon installing apptainer, edit the `config.toml` and `container/rust-capstone.def` to provide the right path to your capstone compatible llvm build.
+
+TIP: Ideally, it is better to keep the repository in the home directory (or symlink it there), apptainer fs seems a bit complex to understand.
+
+Next just build the apptainer to use the compiler:
+
+```bash
+# Build the container
+container/build
+
+# Build the rust compiler
+container/rust-capstone.sif build -j64
+
+# Run a test file using the compiler
+container/rust-capstone.sif run main2.rs # can remove the flags by editing container/rust-capstone.def
+
+# Clean the build files
+container/rust-capstone.sif clean
+```
+
+Known issues: The core library does not build for rust-capstone (related to the progress on LLVM) so just kill the build when it is building the core library in stage 1 to save time.
+
 # The Rust Programming Language
 
 This is the main source code repository for [Rust]. It contains the compiler,
