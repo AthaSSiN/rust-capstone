@@ -24,6 +24,31 @@ container/rust-capstone.sif clean
 
 Known issues: The core library does not build for rust-capstone (related to the progress on LLVM) so just kill the build when it is building the core library in stage 1 to save time.
 
+## Progress
+
+* Datalayout changes completed
+   * Can specify capability sizes and address spaces for purecap or hybrid mode
+* Mandatory address space parameters in APIs
+* Differentiate `ty_size`/`total_size` and `val_size` in APIs
+   * Like `LayoutS`, `AllocRange`, `Primitive`, etc. This was the major set of changes
+* Create invalid (non-dereferencable) capabilities from `mem::transmute`
+* Current state: fixing assertion failures when building core/compiler_builtins
+
+The Cheri changes at the current state are more or less compatible with the Capstone changes so do follow the progress on the original repository
+
+## Future work
+
+* Modifications to core/compiler_builtins/std…
+* How to specify capability types in hybrid mode?
+   * Rust annotations don’t seem the right tool
+   * Library solution?
+* Comprehensively evaluate uses of `ty_size` - should they be using `val_size`?
+
+### References
+
+[Lewis Revill's work on Cheri support for Rust](https://fosdem.org/2023/schedule/event/rust_a_rusty_cheri_the_path_to_hardware_capabilities_in_rust/attachments/slides/5389/export/events/attachments/rust_a_rusty_cheri_the_path_to_hardware_capabilities_in_rust/slides/5389/A_Rusty_CHERI.pdf)
+
+
 # The Rust Programming Language
 
 This is the main source code repository for [Rust]. It contains the compiler,
