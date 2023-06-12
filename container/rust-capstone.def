@@ -18,8 +18,8 @@ From: ubuntu:22.04
         rm -rf build
     elif [ "$1" = "build" ]; then
         ./x.py build --target=riscv64gc-unknown-none-purecap ${@:2}
-    elif [ "$1" = "run" ]; then
-        build/x86_64-unknown-linux-gnu/stage1/bin/rustc --target=riscv64gc-unknown-none-purecap --emit=asm -C llvm-args=-print-after-all -C llvm-args=-debug ${@:2}
+    elif [ "$1" = "play" ]; then
+        make -C playground ${@:2}
     else
         echo "Unrecognised command"
         exit 1
